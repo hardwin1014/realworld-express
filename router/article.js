@@ -12,6 +12,7 @@ const {
   favorite,
   unFavorite
 } = require("../controller/article");
+const auth = require('../middleware/auth')
 
 const router = express.Router();
 
@@ -25,7 +26,7 @@ router.get("/feed", RecommendArticle);
 router.get("/:slug", getArticleDetails);
 
 // 创建文章
-router.post("/", createArticle);
+router.post("/", auth, createArticle);
 
 // 更新文章
 router.put("/:slug", updateArticle);

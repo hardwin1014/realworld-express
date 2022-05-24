@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/readworld');
+const { dbUrl } = require('../config/config.default')
+mongoose.connect(dbUrl);
 let db = mongoose.connection;
 
 // 失败的时候
@@ -13,8 +14,9 @@ db.once('open', function() {
   console.log('数据库连接成功！');
 });
 
-
-// const Cat = mongoose.model('Cat', { name: String });
-
-// const kitty = new Cat({ name: 'Zildjian' });
-// kitty.save().then(() => console.log('meow'));
+// 组织导出模型
+module.exports = {
+  // 写的大写开头，到mongoose数据库中会变成users
+  User: mongoose.model('User',require('./user')),
+  Article: mongoose.model('Article', require('./article'))
+}

@@ -1,11 +1,12 @@
 ### 项目是由realworld设计的api规范进行开发
 
 + Express + mongoose
-
++ 规范文档 https://realworld-docs.netlify.app/docs/intro
 ### 实现功能
-
+#### 已完成
 + 登录，注册
 + 文章的增删改查
+#### 未完成
 + 标签
 + 点赞
 + 取消点赞

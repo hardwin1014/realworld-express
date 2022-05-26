@@ -27,29 +27,29 @@ router.get("/", getNewArticle);
 router.get("/feed", RecommendArticle);
 
 // 获取文章详情
-router.get("/:slug", getArticleDetails);
+router.get("/:articleId", articleValidator.getArticle, getArticleDetails);
 
 // 创建文章
 router.post("/", auth, articleValidator.createArticle, createArticle);
 
 // 更新文章
-router.put("/:slug", updateArticle);
+router.put("/:articleId",auth, articleValidator.updateArticle, updateArticle);
 
 // 删除文章
-router.delete("/:slug", deleteArticle);
+router.delete("/:articleId", auth, articleValidator.deleteArticle, deleteArticle);
 
 // 创建评论
-router.post("/:slug/comments", createComment);
+router.post("/:articleId/comments", createComment);
 
 // 获取文章多条评论
-router.get("/:slug/comments", getComment);
+router.get("/:articleId/comments", getComment);
 
 // 删除评论
-router.delete("/:slug/comments/:id", deleteComment);
+router.delete("/:articleId/comments/:id", deleteComment);
 
 // 点赞
-router.post("/:slug/favorite", favorite);
+router.post("/:articleId/favorite", favorite);
 
 // 取消点赞
-router.delete("/:slug/favorite", unFavorite);
+router.delete("/:articleId/favorite", unFavorite);
 module.exports = router;

@@ -1,28 +1,42 @@
 const mongoose = require("mongoose");
+// 创建时间，更新时间
 const baseModel = require("./base-model");
+
+const Schema = mongoose.Schema
 
 const articleSchema = new mongoose.Schema({
   ...baseModel,
-  username: {
+  // 标题
+  title: {
     type: String,
     required: true,
   },
-  email: {
+  // 描述摘要
+  description: {
     type: String,
     required: true,
   },
-  password: {
+  // 文章内容
+  body: {
     type: String,
     required: true,
   },
-  // bio是个人介绍
-  bio: {
-    type: String,
+  // 标签
+  tagList: {
+    type: [String],
     default: null,
   },
-  image: {
-    type: String,
-    default: null,
+  // 点赞
+  favoritesCount:{
+    type: Number,
+    default: 0
+  },
+  // 作者
+  author:{
+    // 记录作者的id
+    type: Schema.Types.ObjectId,
+    ref: "User",
+    required: true
   }
 });
 

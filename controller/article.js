@@ -1,4 +1,5 @@
-// 文章列表  默认全局返回最新文章
+const { Article } = require('../model')
+// 获取文章列表
 exports.getNewArticle = async (req, res, next) => {
   try {
     res.send("文章列表");
@@ -7,8 +8,7 @@ exports.getNewArticle = async (req, res, next) => {
   }
 };
 
-// 推荐文章
-
+// 获取用户关注的作者文章列表
 exports.RecommendArticle = async (req, res, next) => {
   try {
     res.send("推荐文章");
@@ -29,7 +29,14 @@ exports.getArticleDetails = async (req, res, next) => {
 // 创建文章
 exports.createArticle = async (req, res, next) => {
   try {
-    res.send("创建文章");
+    const article = new Article(req.body.article)
+    article.author = req.user._id
+    article.populate('author').execPopulate()
+    await article.save()
+    console.log(article);
+    res.status(201).json({
+      article
+    });
   } catch (error) {
     next(error);
   }

@@ -12,7 +12,11 @@ const {
   favorite,
   unFavorite
 } = require("../controller/article");
+// 身份认证
 const auth = require('../middleware/auth')
+// 校验文章
+const articleValidator = require('../validator/article')
+
 
 const router = express.Router();
 
@@ -26,7 +30,7 @@ router.get("/feed", RecommendArticle);
 router.get("/:slug", getArticleDetails);
 
 // 创建文章
-router.post("/", auth, createArticle);
+router.post("/", auth, articleValidator.createArticle, createArticle);
 
 // 更新文章
 router.put("/:slug", updateArticle);

@@ -2,6 +2,9 @@
 
 + Express + mongoose
 + 规范文档 https://realworld-docs.netlify.app/docs/intro
+
+### 前端ssr
++ https://github.com/hardwin1014/realworld-nuxtjs.git
 ### 实现功能
 #### 已完成
 + 登录，注册
